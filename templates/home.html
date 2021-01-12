@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY Dictionary</title>
+</head>
+<body>
+    {% block content %}
+    <h1><b>FIND IT..</b></h1>
+    <form action="meaning/" method="POST">
+        {% csrf_token %}
+        Enter word to find its MEANING: &nbsp;&nbsp;  <input type="text" name="word" required="required" ><br/><br/>
+        
+        <input type="submit" value="FIND">
+
+    </form>
+
+
+    {% if e is False %}
+    <script>
+    if (confirm('Word not found..please recheck.')) {
+        // Save it!
+        
+        window.location.href = "/"
+        
+      } 
+      else {
+        // Do nothing!
+        window.location.href = "/"
+      }
+    
+    </script>  
+    
+    {% endif %}
+
+
+
+
+    {% if s is False %}
+    <script>
+    if (confirm('did you mean "{{word}}" instead. Enter "{{word}}"" or any other words you wish to search for ')) {
+        // Save it!
+        
+        
+        window.location.href = "/"
+        
+      } 
+      else {
+        // Do nothing!
+        window.location.href = "/"
+      }
+    
+    </script>  
+    
+    {% endif %}
+    
+    {% endblock %}
+</body>
+</html>
